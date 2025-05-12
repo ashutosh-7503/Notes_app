@@ -6,7 +6,7 @@ import 'package:notes_app/screens/todolist_screen.dart';
 
 void main() async {
   await Hive.initFlutter();
-  var box = await Hive.openBox("mybox");
+  await Hive.openBox("mybox");
   runApp(NotesApp());
 }
 
