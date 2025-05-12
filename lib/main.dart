@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/screens/notes_screen.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+// import 'package:notes_app/screens/notes_screen.dart';
+import 'package:notes_app/screens/todolist_screen.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  var box = await Hive.openBox("mybox");
   runApp(NotesApp());
-  debugPrint('App started');
 }
 
 class NotesApp extends StatelessWidget {
@@ -18,16 +22,7 @@ class NotesApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         scaffoldBackgroundColor: const Color(0xFF1E1E1E),
       ),
-      home: const NotesScreen(),
+      home: const TodolistScreen(),
     );
-  }
-}
-
-class TempScreen extends StatelessWidget {
-  const TempScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: const Text('Temporary app')));
   }
 }
