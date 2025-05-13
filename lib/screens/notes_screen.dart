@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+// import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/database/notes_database.dart';
 import 'package:notes_app/screens/note_card.dart';
@@ -120,6 +120,7 @@ class _NotesScreenState extends State<NotesScreen> {
       extendBody: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
         title: const Text(
           'Notes',
@@ -131,12 +132,23 @@ class _NotesScreenState extends State<NotesScreen> {
         ),
       ),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showNoteDialog();
-        },
-        backgroundColor: Colors.white,
-        child: const Icon(Icons.add, color: Colors.black87),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () => Navigator.pushNamed(context, '/todolist_screen'),
+            backgroundColor: Colors.deepPurple[100],
+            child: const Icon(Icons.notes, color: Colors.black87),
+          ),
+          const SizedBox(width: 10),
+          FloatingActionButton(
+            onPressed: () {
+              showNoteDialog();
+            },
+            backgroundColor: Colors.white,
+            child: const Icon(Icons.add, color: Colors.black87),
+          ),
+        ],
       ),
 
       body:
@@ -194,11 +206,6 @@ class _NotesScreenState extends State<NotesScreen> {
                   },
                 ),
               ),
-      bottomNavigationBar: CurvedNavigationBar(
-        items: items,
-        backgroundColor: Colors.transparent,
-        index: index,
-      ),
     );
   }
 }

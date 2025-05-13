@@ -1,3 +1,4 @@
+// import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notes_app/database/todo_databse.dart';
@@ -12,13 +13,12 @@ class TodolistScreen extends StatefulWidget {
 }
 
 class _TodolistScreenState extends State<TodolistScreen> {
-  // List TodoList = [
-  //   ["Todo", false],
-  //   ["todo", false],
-  //   ["todo", false],
-  //   ["todo", false],
-  //   ["todo", false],
-  // ];
+  int index = 1;
+  final items = <Widget>[
+    Icon(Icons.notes, size: 30),
+    Icon(Icons.add_box, size: 30),
+  ];
+
   final _myBox = Hive.box("mybox");
   TodoDatabase db = TodoDatabase();
 
@@ -81,6 +81,7 @@ class _TodolistScreenState extends State<TodolistScreen> {
         title: const Text('To-Do List', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.transparent,
         elevation: 10,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 20),
